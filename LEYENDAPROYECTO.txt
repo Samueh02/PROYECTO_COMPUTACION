@@ -1,0 +1,292 @@
+
+# 📁 PROYECTO_COMPUTACION1 — EXPLICACIÓN COMPLETA
+
+---
+
+## 🔹 `aplicacion/` → **FASE 3: PROTOTIPO (INTERFAZ DE USUARIO)**
+
+Aquí está lo que **ve y usa el usuario final**.
+
+### 📄 `app.py`
+
+👉 Es el **programa principal del prototipo**.
+
+Qué hace:
+
+* Muestra una interfaz sencilla (por ejemplo con Streamlit)
+* Permite al usuario:
+
+  * Introducir síntomas
+  * Pulsar un botón
+* Llama al modelo entrenado
+* Muestra:
+
+  * Enfermedad predicha
+  * Nivel de urgencia (si lo añadís)
+  * Mensaje de advertencia (“no sustituye a un médico”)
+
+📌 **Archivo clave para cumplir la fase 3 del enunciado**
+
+---
+
+### 📄 `utils.py`
+
+👉 Funciones auxiliares para el prototipo.
+
+Qué hace:
+
+* Cargar el modelo (`mejor_modelo.pkl`)
+* Convertir los síntomas escritos por el usuario en el formato que entiende el modelo
+* Leer el `mapeo_caracteristicas.json`
+
+📌 Sirve para que `app.py` esté limpio y ordenado.
+
+---
+
+### 📄 `requirements.txt`
+
+👉 Lista de librerías necesarias para ejecutar el proyecto.
+
+Ejemplo:
+
+```
+pandas
+numpy
+scikit-learn
+streamlit
+```
+
+📌 Muy importante para el **manual del desarrollador**.
+
+---
+
+## 🔹 `codigo/` → **LÓGICA DEL SISTEMA (BACKEND)**
+
+Aquí está el **código “serio”**, reutilizable y ordenado.
+
+---
+
+### 📄 `preprocesamiento.py`
+
+👉 Todo lo relacionado con **preparar los datos**.
+
+Qué hace:
+
+* Limpiar valores nulos
+* Normalizar síntomas
+* Codificar variables
+* Guardar el CSV limpio
+* Crear el `mapeo_caracteristicas.json`
+
+📌 Corresponde a la **FASE 1: Generación del Dataset**
+
+---
+
+### 📄 `entrenamiento.py`
+
+👉 Entrena los modelos de Machine Learning.
+
+Qué hace:
+
+* Cargar datos limpios
+* Entrenar:
+
+  * Regresión logística
+  * Random Forest
+* Guardar los modelos en `/modelos`
+
+📌 Cumple el requisito de **entrenar al menos 2 modelos**.
+
+---
+
+### 📄 `evaluacion.py`
+
+👉 Evalúa y compara los modelos.
+
+Qué hace:
+
+* Calcula:
+
+  * Accuracy
+  * Precision
+  * Recall
+  * F1-score
+* Genera matrices de confusión
+* Decide cuál es el mejor modelo
+
+📌 Justifica por qué existe `mejor_modelo.pkl`.
+
+---
+
+### 📄 `prediccion.py`
+
+👉 Código de predicción reutilizable.
+
+Qué hace:
+
+* Recibe síntomas procesados
+* Usa el modelo entrenado
+* Devuelve la predicción
+
+📌 Es lo que usa internamente la aplicación.
+
+---
+
+## 🔹 `datos/` → **FASE 1: GENERACIÓN DEL DATASET**
+
+---
+
+### 📂 `originales/`
+
+👉 Datos **tal y como se descargan de Kaggle**.
+
+Archivos:
+
+* `Final_Augmented_dataset_Diseases_and_Symptoms.csv`
+* `Symptom2Disease.csv`
+
+📌 Demuestra transparencia y fuente de datos.
+
+---
+
+### 📂 `procesados/`
+
+👉 Datos **ya limpios y preparados**.
+
+Archivos:
+
+* `enfermedades_sintomas_limpio.csv` → dataset final
+* `mapeo_caracteristicas.json` → relación síntoma → columna
+
+📌 Este CSV es el que usan los modelos.
+
+---
+
+### 📄 `README_datos.md`
+
+👉 Explica:
+
+* De dónde salen los datos
+* Qué problemas tenían
+* Qué limpieza se hizo
+
+📌 Muy valorado por el profesor.
+
+---
+
+## 🔹 `documentacion/` → **MEMORIA Y MANUALES (OBLIGATORIO)**
+
+---
+
+### 📄 `memoria_proyecto.pdf`
+
+👉 Documento principal del proyecto.
+
+Incluye:
+
+* Introducción
+* Problema
+* Metodología
+* Resultados
+* Conclusiones
+
+📌 **Es lo que más pesa en la nota.**
+
+---
+
+### 📄 `manual_desarrollador.pdf`
+
+👉 Cómo ejecutar el proyecto.
+
+Incluye:
+
+* Instalación
+* Dependencias
+* Estructura de carpetas
+* Cómo lanzar la app
+
+---
+
+### 📄 `manual_usuario.pdf`
+
+👉 Cómo usar el prototipo.
+
+Incluye:
+
+* Qué introducir
+* Qué devuelve
+* Ejemplos
+* Advertencias legales
+
+---
+
+## 🔹 `modelos/` → **RESULTADOS DEL MACHINE LEARNING**
+
+---
+
+### 📄 `regresion_logistica.pkl`
+
+Modelo base (baseline).
+
+### 📄 `random_forest.pkl`
+
+Modelo más potente.
+
+### 📄 `mejor_modelo.pkl`
+
+El modelo elegido tras la evaluación.
+
+📌 Se usa directamente en la aplicación.
+
+---
+
+## 🔹 `notebooks/` → **RAZONAMIENTO Y PROCESO**
+
+Estos notebooks muestran **cómo pensáis**, no solo el resultado.
+
+---
+
+### 📘 `01_limpieza_datos.ipynb`
+
+* Exploración inicial
+* Limpieza
+* Guardado del dataset limpio
+
+---
+
+### 📘 `02_analisis_exploratorio.ipynb`
+
+* Gráficos
+* Distribuciones
+* Relación síntomas–enfermedad
+
+---
+
+### 📘 `03_entrenamiento_modelos.ipynb`
+
+* Entrenamiento paso a paso
+* Comparación de modelos
+
+---
+
+### 📘 `04_evaluacion_modelos.ipynb`
+
+* Métricas
+* Matrices de confusión
+* Elección final
+
+📌 Muy útiles para justificar decisiones en la memoria.
+
+---
+
+## 🔹 `README.md` → **RESUMEN GENERAL**
+
+Explica rápidamente:
+
+* Qué hace el proyecto
+* Cómo ejecutarlo
+* Autores
+
+📌 Lo primero que ve el profesor al abrir el ZIP.
+
+---
